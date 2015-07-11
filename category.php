@@ -1,6 +1,6 @@
 <?php get_header(); ?>
-        
-        <?php if ( have_posts() ) : ?>
+ 
+<?php if ( have_posts() ) : ?>
 
 			<?php if ( is_home() && ! is_front_page() ) : ?>
 				<header>
@@ -30,6 +30,5 @@
 
 		endif;
 		?>
-
  
 <?php get_footer(); ?>

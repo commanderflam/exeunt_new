@@ -3,6 +3,7 @@ jQuery(document).ready(function( $ ) {
 
 	var menu_top = jQuery( "#main-nav" );
 	var offset = menu_top.offset();
+	var nav_height = menu_top.height();
 	console.log(offset);
 
 	var $document = $(document),
@@ -20,5 +21,7 @@ jQuery(document).ready(function( $ ) {
 	    console.log('removed');
 	  }
 	});
+
+	$('#navbar-placeholder').height(nav_height);
 
 });

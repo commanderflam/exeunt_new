@@ -10,6 +10,16 @@
  */
 ?>
 
+<?php 
+	if ( is_single() ) : ?>
+	
+		<div class="row">
+
+			<div class="col-lg-8">
+<?php
+	endif;
+?>
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php
 		// Post thumbnail.
@@ -17,6 +27,7 @@
 	?>
 
 	<header class="entry-header">
+		<h4 class="author-title"><?php echo get_the_author(); ?></h4>
 		<?php
 			if ( is_single() ) :
 				the_title( '<h1 class="entry-title">', '</h1>' );
@@ -29,10 +40,22 @@
 	<div class="entry-content">
 		<?php
 			/* translators: %s: Name of current post */
-			the_content( sprintf(
-				__( 'Continue reading %s', 'twentyfifteen' ),
-				the_title( '<span class="screen-reader-text">', '</span>', false )
-			) );
+
+			if( is_archive() ):
+
+				the_excerpt( sprintf(
+					__( 'Continue reading %s', 'twentyfifteen' ),
+					the_title( '<span class="screen-reader-text">', '</span>', false )
+				) );
+
+			else :
+
+				the_content( sprintf(
+					__( 'Continue reading %s', 'twentyfifteen' ),
+					the_title( '<span class="screen-reader-text">', '</span>', false )
+				) );
+
+			endif;
 
 			wp_link_pages( array(
 				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentyfifteen' ) . '</span>',
@@ -58,3 +81,13 @@
 	</footer><!-- .entry-footer -->
 
 </article><!-- #post-## -->
+
+<?php 
+	if ( is_single() ) : ?>
+	
+		</div>
+
+			</div>
+<?php
+	endif;
+?>

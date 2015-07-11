@@ -24,6 +24,9 @@ Tags: academic, cultural
 body {
     font-family: 'Open Sans', sans-serif;
 }
+body.single {
+    background-color: #f1f1f1;
+}
 #main {
 }
 #hero-div {
@@ -59,4 +62,24 @@ body {
 }
 .tile h3 {
     margin-top: 0;
+}
+article {
+    margin-top: 3em;
+    background: #fff;
+    padding: 4em;
+}
+article .entry-content {
+    font-family: Georgia, Palatino, Times, 'Times New Roman', serif;
+    font-size: 1.4em;
+    line-height: 1.6em;
+    color: rgb(65, 65, 65);
+}
+article .entry-content p {
+    margin-bottom: 2em;
+}
+article .entry-header {
+    margin-bottom: 2em;
+}
+h4.author-title {
+    font-family: Georgia, Palatino, Times, 'Times New Roman', serif;
 }

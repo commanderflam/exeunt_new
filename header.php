@@ -15,7 +15,7 @@
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>-->
         <?php wp_head(); ?>
     </head>
-    <body>
+    <body <?php body_class(); ?>>
 
     <div class="container" id="main">
 
@@ -35,7 +35,7 @@
         );
         $myposts = get_posts( $args );
         if($myposts):
-        foreach( $myposts as $post ) :  setup_postdata($post);?>
+        foreach( $myposts as $post ) :  setup_postdata($post); $size = 'full'?>
                 <div id="the-damn-header-ad" class="text-center">
                     <?php if ( has_post_thumbnail() ) {?>
                         <a target="_blank" title="Click for more info" href="<?php echo get_post_meta($post->ID, 'Ad Link', true);?>">
@@ -51,6 +51,8 @@
                 </div>
         <?php endforeach;
         endif; ?>
+
+    <div id="navbar-placeholder">
 
     <nav class="navbar navbar-default" id="main-nav">
         <div class="container-fluid">
@@ -89,5 +91,5 @@
 
         </div>
     </nav>
-
+    </div><!--navbar placeholder-->
         

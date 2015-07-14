@@ -27,6 +27,15 @@ body {
 body.single {
     background-color: #f1f1f1;
 }
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Gill Sans', sans-serif;
+}
+.center {
+    text-align: center;
+}
+.nowrap {
+    white-space: nowrap;
+}
 #main {
 }
 #hero-div {
@@ -59,9 +68,31 @@ body.single {
 }
 .tile h6 {
     text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: .04em;
 }
 .tile h3 {
     margin-top: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.tile p {
+    font-style: italic;
+}
+.tile span.author, td.author, .gil {
+    font-style: normal;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: 'Gill Sans', sans-serif;
+}
+td.author {
+    white-space: nowrap;
+    text-align: right;
+    font-weight: 600;
+}
+.toc-ex p {
+    font-style: italic;
+    font-family: Georgia, Palatino, Times, 'Times New Roman', serif;
 }
 article {
     margin-top: 3em;

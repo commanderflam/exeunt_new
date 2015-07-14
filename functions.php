@@ -276,7 +276,8 @@ function exeunt_scripts_and_styles() {
     wp_enqueue_script( "bootstrap_js_offline" );
     //wp_enqueue_script( "modernizr" );
     wp_enqueue_script( "exeunt_scripts" );
-	        
+	wp_localize_script('exeunt_scripts', 'WP_AJAX', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ));
+
     wp_enqueue_style( "fontawesome" );
     wp_enqueue_style( "open-sans" );
     
@@ -285,6 +286,66 @@ function exeunt_scripts_and_styles() {
 }
 
 add_action( 'wp_enqueue_scripts', 'exeunt_scripts_and_styles' );
+
+add_action('wp_ajax_toc_nav', 'toc_nav');
+add_action('wp_ajax_nopriv_toc_nav', 'toc_nav');
+
+function toc_nav() {
+
+	$page = $_POST['page'];
+	$type = $_POST['type'];
+
+	$args = array(
+
+		'post_type' => $type,
+		'posts_per_page' => 10,
+		'paged' => $page
+
+		);
+
+	$posts = get_posts($args);
+
+	toc($posts);
+
+    exit;
+
+}
+
+function toc($posts){
+
+	$current_year = date('Y');
+
+	if($posts):
+
+		foreach($posts as $post) : setup_postdata($post); 
+
+		$permalink = get_permalink($post->ID);
+		$title = get_the_title($post->ID);
+		$date = date_create_from_format('Y-m-d H:i:s', $post->post_date);
+		$checkyear = date_format($date, 'Y');
+		if($checkyear != $current_year){
+			$time = date_format($date, 'd M Y');
+		}else{
+			$time = date_format($date, 'd M');
+		}
+		?>
+
+			<tr>
+				<td class="author"><?php echo get_the_author(); ?></td>
+				<td class="gil nowrap"><?php echo $time ?></td>
+				<td class="toc-ex"><span class="gil"><a href="<?php echo $permalink ?>"><?php echo $title; ?></a></span><p><?php echo $post->post_excerpt; ?></p></td>
+			</tr>
+
+		<?php
+
+		endforeach;
+
+	endif;
+}
+
+function print_r2($roba){
+	echo '<pre>'.print_r($roba).'<pre>';
+}
 
 require get_template_directory() . '/inc/template-tags.php';
 

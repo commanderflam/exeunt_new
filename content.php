@@ -27,7 +27,7 @@
 	?>
 
 	<header class="entry-header">
-		<h4 class="author-title"><?php echo get_the_author(); ?></h4>
+		<h class="author-title"><?php echo get_the_author(); ?></h4>
 		<?php
 			if ( is_single() ) :
 				the_title( '<h1 class="entry-title">', '</h1>' );

@@ -24,4 +24,72 @@ jQuery(document).ready(function( $ ) {
 
 	$('#navbar-placeholder').height(nav_height);
 
+	$(document).on('click', 'a.toc-nav', function(e){
+
+		var page = $(this).attr('data-page');
+		var type = $(this).attr('data-type');
+		
+		toc_nav(page,type);
+
+		if($(this).hasClass('next-page')){
+			$('a.toc-nav').each(function(){
+				var no = parseInt($(this).attr('data-page'));
+				var newno = no+1;
+				$(this).attr('data-page', newno);
+				if(newno == 0){
+					$(this).addClass('disabled').attr('disabled', 'disabled');
+				}else{
+					$(this).removeClass('disabled').removeAttr('disabled');
+				}
+			});
+		}
+		if($(this).hasClass('prev-page')){
+			$('a.toc-nav').each(function(){
+				var no = parseInt($(this).attr('data-page'));
+				var newno = no-1;
+				$(this).attr('data-page', newno);
+				if(newno == 0){
+					$(this).addClass('disabled').attr('disabled', 'disabled');
+				}else{
+					$(this).removeClass('disabled').removeAttr('disabled');
+				}
+			});
+		}
+
+		$("#contents-holder").animate({
+        	opacity: 0
+    	}, 100);
+
+    	$('#current-page span').text(page);
+
+
+		e.preventDefault();
+
+	});
+
+	toc_cache = [];
+
+
+	function toc_nav(page, type){
+
+		$.ajax({
+		     url: WP_AJAX.ajaxurl,
+		     type: 'post',
+		     data: {
+		     	action: 'toc_nav',
+		     	page: page,
+		     	type: type
+
+		     }, 
+		     success: function(html){
+		     	console.log(html);
+		     	$('#contents-holder table tbody').html(html);
+		     	$("#contents-holder").animate({
+		        	opacity: 200
+		    	}, 100);
+		     }
+		});
+
+	};
+
 });

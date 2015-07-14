@@ -5,10 +5,12 @@
 
         <!-- Add your site or application content here -->
 
-        <?php $highargs = array(
-                    'child_of' => 23,
-                    'fields' => 'ids'
-                ); 
+        <?php 
+
+            $highargs = array(
+                'child_of' => 23,
+                'fields' => 'ids'
+            );
             $highs = get_terms( 'featured', $highargs ); 
             $total = count($highs);
             ?>
@@ -92,7 +94,11 @@
 
         <div class="col-lg-4 text-center border-r">
 
-            <?php $args = array(
+            <?php 
+
+            $exclude = array();
+
+            $args = array(
                 'post_type' => 'review', 
                 'posts_per_page' => 1, 
                 'post__not_in' => $exclude )
@@ -112,7 +118,7 @@
                         <h6 class="text-danger">Reviews</h6>
 
                         <h3><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h3>
-                        <?php the_excerpt();?>
+                        <p><span class="author"><?php echo get_the_author(); ?></span> on <?php echo get_the_excerpt();?></p>
                     </div>
 
                 <?php endforeach;?>
@@ -144,7 +150,7 @@
                         <h6 class="text-danger">Features</h6>
 
                         <h3><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h3>
-                        <?php the_excerpt();?>
+                        <p><span class="author"><?php echo get_the_author(); ?></span> on <?php echo get_the_excerpt();?></p>
                     </div><!--tile-->
 
                 <?php endforeach;?>

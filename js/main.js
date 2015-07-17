@@ -56,7 +56,7 @@ jQuery(document).ready(function( $ ) {
 			});
 		}
 
-		$("#contents-holder").animate({
+		$("#contents-holder table").animate({
         	opacity: 0
     	}, 100);
 
@@ -84,7 +84,7 @@ jQuery(document).ready(function( $ ) {
 		     success: function(html){
 		     	console.log(html);
 		     	$('#contents-holder table tbody').html(html);
-		     	$("#contents-holder").animate({
+		     	$("#contents-holder table").animate({
 		        	opacity: 200
 		    	}, 100);
 		     }

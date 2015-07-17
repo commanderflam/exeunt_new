@@ -33,6 +33,12 @@ h1, h2, h3, h4, h5, h6 {
 .center {
     text-align: center;
 }
+.it {
+    font-style: italic;
+}
+.spaced {
+    letter-spacing: .1em;
+}
 .nowrap {
     white-space: nowrap;
 }
@@ -85,6 +91,12 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
     font-family: 'Gill Sans', sans-serif;
 }
+.gill {
+    font-family: 'Gill Sans', sans-serif;
+}
+.george {
+    font-family: Georgia, Palatino, Times, 'Times New Roman', serif;
+}
 td.author {
     white-space: nowrap;
     text-align: right;
@@ -97,7 +109,7 @@ td.author {
 article {
     margin-top: 3em;
     background: #fff;
-    padding: 4em;
+    padding: 2em 4em 4em 4em;
 }
 article .entry-content {
     font-family: Georgia, Palatino, Times, 'Times New Roman', serif;
@@ -111,6 +123,16 @@ article .entry-content p {
 article .entry-header {
     margin-bottom: 2em;
 }
-h4.author-title {
-    font-family: Georgia, Palatino, Times, 'Times New Roman', serif;
+article div.article-lead {
+    margin-bottom: 25px;
+}
+h1.entry-title {
+    margin-bottom: 20px;
+}
+p.wp-caption-text {
+    font-family: 'Gill Sans', sans-serif;
+    font-size: 14px;
+    line-height: 14px;
+    margin: 10px 0;
+    text-align: right;
 }

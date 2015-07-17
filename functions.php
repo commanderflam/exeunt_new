@@ -343,8 +343,10 @@ function toc($posts){
 	endif;
 }
 
-function print_r2($roba){
-	echo '<pre>'.print_r($roba).'<pre>';
+function print_r2($val){
+    echo '<pre>';
+    	print_r($val);
+    echo  '</pre>';
 }
 
 require get_template_directory() . '/inc/template-tags.php';

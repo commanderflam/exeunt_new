@@ -3,7 +3,7 @@ jQuery(document).ready(function( $ ) {
 
 	var menu_top = jQuery( "#main-nav" );
 	var offset = menu_top.offset();
-	var nav_height = menu_top.height();
+	var nav_height = menu_top.outerHeight(true);
 	console.log(offset);
 
 	var $document = $(document),
@@ -91,5 +91,20 @@ jQuery(document).ready(function( $ ) {
 		});
 
 	};
+
+	$('body.single img').addClass('img-responsive');
+	$(".wp-caption").removeAttr('style');
+
+	   var maxHeight = -1;
+
+	   $('body.home div.row>div').each(function() {
+	     maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+	   });
+
+	   $('body.home div.row>div').each(function() {
+	     $(this).innerHeight(maxHeight);
+	   });
+
+	console.log('done');
 
 });

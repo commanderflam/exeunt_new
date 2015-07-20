@@ -7,19 +7,7 @@ Author: Sean Deel
 Author URI: http://www.ten-sixths.com/
 Tags: academic, cultural
 
-/* 
-
-/*! HTML5 Boilerplate v5.2.0 | MIT License | https://html5boilerplate.com/ */
-
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
-
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
+*/
 
 body {
     font-family: 'Open Sans', sans-serif;
@@ -28,13 +16,16 @@ body.single {
     background-color: #f1f1f1;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Gill Sans', sans-serif;
+    font-family: "brandon-grotesque", 'Gill Sans', sans-serif;
 }
 .center {
     text-align: center;
 }
 .it {
     font-style: italic;
+}
+.caps {
+    text-transform: uppercase;
 }
 .spaced {
     letter-spacing: .1em;
@@ -64,7 +55,7 @@ h1, h2, h3, h4, h5, h6 {
     border-top: 1px solid #f7f7f7;
 }
 .tile {
-    padding: 0 30px;
+    padding: 15px 30px 0 30px;
 }
 .border-r {
     border-right: 1px solid #ddd;
@@ -74,25 +65,26 @@ h1, h2, h3, h4, h5, h6 {
 }
 .tile h6 {
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: .04em;
+    margin-top: 15px;
 }
 .tile h3 {
     margin-top: 0;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 500;
 }
 .tile p {
     font-style: italic;
 }
 .tile span.author, td.author, .gil {
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
-    font-family: 'Gill Sans', sans-serif;
+    font-family: "brandon-grotesque", 'Gill Sans', sans-serif;
 }
 .gill {
-    font-family: 'Gill Sans', sans-serif;
+    font-family: "brandon-grotesque", 'Gill Sans', sans-serif;
 }
 .george {
     font-family: Georgia, Palatino, Times, 'Times New Roman', serif;
@@ -106,10 +98,28 @@ td.author {
     font-style: italic;
     font-family: Georgia, Palatino, Times, 'Times New Roman', serif;
 }
+.toc-head {
+    margin-top: 0;
+}
 article {
     margin-top: 3em;
     background: #fff;
     padding: 2em 4em 4em 4em;
+}
+#show-meta, #single-side-ad {
+    margin-top: 3em;
+}
+#show-meta + #single-side-ad {
+    margin-top: 0px;
+}
+#show-meta h5 {
+    margin-bottom: 5px;
+}
+#show-meta h5:first-child {
+    margin-top: 0;
+}
+#show-meta p + h5 {
+    margin-top: 20px;
 }
 article .entry-content {
     font-family: Georgia, Palatino, Times, 'Times New Roman', serif;
@@ -135,4 +145,11 @@ p.wp-caption-text {
     line-height: 14px;
     margin: 10px 0;
     text-align: right;
+}
+h1.entry-title + h5 {
+    margin-top: -5px;
+    margin-bottom: 25px;
+}
+.carousel-inner {
+    background-color: #000;
 }

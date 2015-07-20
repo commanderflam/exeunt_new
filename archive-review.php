@@ -2,9 +2,86 @@
 
 	<div class="row">
 
+		<div class="col-lg-7">
+
+			<div id="carousel-reviews" class="carousel slide" data-interval="5000" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <?php for ($i = 1; $i <= $total; $i++) { ?>
+                    <li data-target="#carousel-reviews" data-slide-to="<?php echo $i-1; ?>" <?php if($i == 1){ ?>class="active"<?php } ?>></li>
+                <?php } ?>
+              </ol>
+
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner" role="listbox">
+                
+                <?php
+                
+                $sequence = 0;
+				$highs = array('panel-1', 'panel-2', 'panel-3'); 
+				$total = count($highs);
+
+                foreach ($highs as $high): 
+                    $args = array(
+                        'post_type' => 'review',
+                        'tax_query' => array(
+							'relation' => 'AND',
+                            array(
+                                'taxonomy' => 'carousel',
+                                'field' => 'slug',
+                                'terms' => $high
+                            ),
+                            array(
+								'taxonomy' => 'carousel',
+								'field' => 'slug',
+								'terms' => 'reviews'
+							)
+                        ),
+                        'posts_per_page' => 1,
+                    );
+                    $carousel_features = get_posts( $args ); 
+                        
+                        if ( $carousel_features):
+                            foreach($carousel_features as $post): setup_postdata($post);
+                            $sequence++;
+                            ?>
+                            <div class="item <?php if($sequence == 1){echo 'active';} ?>">
+                                <?php if ( has_post_thumbnail() ) { ?>
+                                    <a href="<?php echo get_post_meta($post->ID, 'Image Link', true);?>">
+                                        <?php $attr = array(
+                                            'title' => trim(strip_tags( get_the_title() )),
+                                        ); the_post_thumbnail('home-carousel', $attr); ?>
+                                    </a>
+                                <?php }?>
+
+                                <div class="carousel-caption">
+							    	<h3>Hello, Moses!</h3>
+							    	<p>Moses gets down and dirty with Pharoh.</p>
+							    </div>
+                            </div>
+                            <?php endforeach;
+                        endif; 
+
+                    endforeach;?>
+              </div>
+
+              <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-reviews" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-reviews" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
+            </div>
+
+		</div><!--col 7-->
+
 		<div class="col-lg-5">
 
-			<h3 class="center">The Latest Reviews</h3>
+			<h3 class="center toc-head">The Latest Reviews</h3>
         
         <?php if ( have_posts() ) : ?>
 

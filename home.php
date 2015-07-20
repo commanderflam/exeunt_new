@@ -14,18 +14,16 @@
             $highs = get_terms( 'featured', $highargs ); 
             $total = count($highs);
             ?>
-                
-                
         
         <div class="row">
 
             <div class="col-lg-8">
 
-            <div id="carousel-example-generic" class="carousel slide" data-interval="10000" data-ride="carousel">
+            <div id="carousel-home" class="carousel slide" data-interval="10000" data-ride="carousel">
               <!-- Indicators -->
               <ol class="carousel-indicators">
                 <?php for ($i = 1; $i <= $total; $i++) { ?>
-                    <li data-target="#carousel-example-generic" data-slide-to="<?php echo $i-1; ?>" <?php if($i == 1){ ?>class="active"<?php } ?>></li>
+                    <li data-target="#carousel-home" data-slide-to="<?php echo $i-1; ?>" <?php if($i == 1){ ?>class="active"<?php } ?>></li>
                 <?php } ?>
               </ol>
 
@@ -189,6 +187,14 @@
         </div>
 
     </div><!--row-->
+
+    <hr>
+
+    <div class="row">
+
+        
+
+    </div>
 
  
 <?php get_footer(); ?>

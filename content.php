@@ -161,7 +161,17 @@
 								$meta_check = get_post_meta($post->ID, $key, true);
 							
 								if($meta_check){
-									echo '<h5><strong class="gil">'.$value.'</strong></h5><p>'.$meta_check.'</p>';
+
+									if($key == 'External Link'):
+
+										echo '<h5><strong class="gil">'.$value.'</strong></h5><p><a href="'.$meta_check.'">'.$meta_check.'</a></p>';
+
+									else:
+
+										echo '<h5><strong class="gil">'.$value.'</strong></h5><p>'.$meta_check.'</p>';
+
+									endif;
+
 								}
 							
 							}

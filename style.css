@@ -101,7 +101,7 @@ td.author {
 .toc-head {
     margin-top: 0;
 }
-article {
+body.single article {
     margin-top: 3em;
     background: #fff;
     padding: 2em 4em 4em 4em;
@@ -127,10 +127,16 @@ article .entry-content {
     line-height: 1.6em;
     color: rgb(65, 65, 65);
 }
-article .entry-content p {
+body.archive article .entry-content {
+    font-size: 1.2em;
+}
+body.single article .entry-content p {
     margin-bottom: 2em;
 }
-article .entry-header {
+body.archive article .entry-content p {
+    margin-bottom: 0;
+}
+body.single article .entry-header {
     margin-bottom: 2em;
 }
 article div.article-lead {
@@ -150,6 +156,21 @@ h1.entry-title + h5 {
     margin-top: -5px;
     margin-bottom: 25px;
 }
+h3.archive-entry-title {
+    margin: 0;
+}
 .carousel-inner {
     background-color: #000;
+}
+div.author-tile {
+    min-height: 100px;
+}
+.navbar {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+}
+.navbar-default {
+    background-color: #fff;
 }

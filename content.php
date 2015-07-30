@@ -128,7 +128,7 @@
 		if ( is_single() && get_the_author_meta( 'description' ) ) :
 			get_template_part( 'author-bio' );
 		else :
-			echo '<hr><p><span class="gil">'.$author.'</span> is a contributor to '.get_bloginfo('name').'.</p>';
+			echo '<hr><p><a class="author-link" href="'.esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ).'" rel="author"><span class="gil">'.$author.'</span></a> is a contributor to '.get_bloginfo('name').'.</p>';
 		endif;
 	?>
 

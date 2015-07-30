@@ -274,11 +274,11 @@ add_action( 'wp_enqueue_scripts', 'exeunt_register_assets' );
 
 function exeunt_scripts_and_styles() {
 	
-	wp_enqueue_style( "bootstrapstyles" );
+	wp_enqueue_style( "bootstrapstyles_offline" );
 	wp_enqueue_style( 'mainStyles', get_stylesheet_uri() );
 	
     wp_enqueue_script( "jquery" );
-    wp_enqueue_script( "bootstrap" );
+    wp_enqueue_script( "bootstrap_js_offline" );
     wp_enqueue_script( "modernizr" );
     wp_enqueue_script( "exeunt_scripts" );
 	wp_localize_script('exeunt_scripts', 'WP_AJAX', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ));
@@ -352,6 +352,40 @@ function print_r2($val){
     echo '<pre>';
     	print_r($val);
     echo  '</pre>';
+}
+
+add_filter( 'pre_get_posts' , 'ucc_include_custom_post_types' );
+
+function ucc_include_custom_post_types( $query ) {
+  global $wp_query;
+
+  if ( !is_preview() && !is_admin() && !is_singular() ) {
+    $args = array(
+      'public' => true ,
+      '_builtin' => false
+    );
+    $output = 'names';
+    $operator = 'and';
+
+    $post_types = get_post_types( $args , $output , $operator );
+
+    /* Add 'link' and/or 'page' to array() if you want these included:
+     * array( 'post' , 'link' , 'page' ), etc.
+     */
+    $post_types = array_merge( $post_types , array( 'post' ) );
+
+    if ($query->is_feed) {
+      /* Do feed processing here if you did not exclude it previously. This if/else 
+       * is not necessary if you want custom post types included in your feed.
+       */
+    } else {
+      $my_post_type = get_query_var( 'post_type' );
+      if ( empty( $my_post_type ) )
+        $query->set( 'post_type' , $post_types );
+    }
+  }
+
+  return $query;
 }
 
 require get_template_directory() . '/inc/template-tags.php';

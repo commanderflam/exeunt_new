@@ -55,7 +55,7 @@
 
     <div id="navbar-placeholder">
 
-    <nav class="navbar navbar-default" id="main-nav">
+    <nav class="navbar navbar-default gil" id="main-nav">
         <div class="container-fluid">
 
                 <div class="navbar-header">
@@ -75,7 +75,6 @@
         <?php //get_search_form();?>
 
             <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">

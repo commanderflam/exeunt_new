@@ -1,6 +1,17 @@
 <?php get_header(); ?>
  
-<?php if ( have_posts() ) : ?>
+<?php if ( have_posts() ) : $number = 0; ?>
+
+	<div class="col-lg-8 col-md-8 col-sm-10">
+
+			<header class="page-header">
+				<?php
+					the_archive_title( '<h1 class="page-title center gil">', '</h1>' );
+					the_archive_description( '<div class="taxonomy-description">', '</div>' );
+				?>
+			</header><!-- .page-header -->
+
+	</div>
 
 			<?php if ( is_home() && ! is_front_page() ) : ?>
 				<header>
@@ -12,7 +23,17 @@
 			// Start the loop.
 			while ( have_posts() ) : the_post();
 
-				get_template_part( 'content', get_post_format() );
+				$number++;
+
+				if($number == 1):
+					
+					get_template_part('archive-first');
+				
+				else:
+				
+					get_template_part( 'archive-page' );
+				
+				endif;
 
 			// End the loop.
 			endwhile;

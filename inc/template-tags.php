@@ -179,7 +179,7 @@ if ( ! function_exists( 'twentyfifteen_post_thumbnail' ) ) :
  *
  * @since Twenty Fifteen 1.0
  */
-function twentyfifteen_post_thumbnail() {
+function twentyfifteen_post_thumbnail($size='post-thumbnail') {
 	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 		return;
 	}
@@ -195,7 +195,7 @@ function twentyfifteen_post_thumbnail() {
 
 	<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true">
 		<?php
-			the_post_thumbnail( 'post-thumbnail', array( 'alt' => get_the_title(), 'class' => 'img-responsive' ) );
+			the_post_thumbnail( $size, array( 'alt' => get_the_title(), 'class' => 'img-responsive center-block' ) );
 		?>
 	</a>
 

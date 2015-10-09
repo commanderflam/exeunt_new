@@ -1,4 +1,6 @@
 <?php get_header(); ?>
+
+	<div class="col-lg-8 col-lg-offset-2">
         
 <?php
 		// Start the loop.
@@ -7,13 +9,8 @@
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<header class="entry-header">
-		<hr>
 		<?php
-			if ( is_single() ) :
 				the_title( '<h1 class="entry-title center">', '</h1>' );
-			else :
-				the_title( sprintf( '<h2 class="entry-title center">', esc_url( get_permalink() ) ), '</h2>' );
-			endif;
 		?>
 	</header><!-- .entry-header -->
 
@@ -56,5 +53,6 @@
 		endwhile;
 		?>
 
+		</div><!--col 6-->
  
 <?php get_footer(); ?>

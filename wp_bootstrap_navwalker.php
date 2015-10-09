@@ -57,6 +57,11 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 				$class_names .= ' dropdown';
 			if ( in_array( 'current-menu-item', $classes ) )
 				$class_names .= ' active';
+			if($depth === 0){
+				$class_names .= ' nav-item';
+			}elseif($depth === 1){
+				$class_names .= ' dropdown-item';
+			}
 			$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
 			$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
 			$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
@@ -76,6 +81,7 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 			else {
 				$atts['href'] = ! empty( $item->url ) ? $item->url : '';
 			}
+			$atts['class'] .= ' nav-link';
 			$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args );
 			$attributes = '';
 			foreach ( $atts as $attr => $value ) {

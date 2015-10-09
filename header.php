@@ -6,6 +6,17 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <meta property="og:url"           content="<?php the_permalink(); ?>" />
+        <meta property="og:type"          content="<?php if(is_single){ $pt = get_post_type($post->ID);
+    
+        $obj = get_post_type_object($pt);
+        
+        $type = $obj->label; echo $type; }?>" />
+        <meta property="og:title"         content="<?php wp_title(''); ?>" />
+        <meta property="og:description"   content="<?php if(is_single){ echo get_the_excerpt(); } ?>" />
+        <meta property="og:image"         content="<?php if(has_post_thumbnail){$post_thumbnail_id = get_post_thumbnail_id();
+$post_thumbnail_url = wp_get_attachment_url( $post_thumbnail_id ); echo $post_thumbnail_url; } ?>" />
+
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
 
@@ -16,80 +27,105 @@
         <script src="//use.typekit.net/dcx3wyi.js"></script>
         <script>try{Typekit.load();}catch(e){}</script>
     </head>
-    <body <?php body_class(); ?>>
-
-    <div class="container" id="main">
+    <body <?php body_class(); $td = get_stylesheet_directory_uri(); ?>>
 
     <?php
-        $args = array( 
-            'post_type' => 'adverts', 
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'adtype',
-                    'field' => 'slug',
-                    'terms' => 'banner'
-                )
-            ),
-            'meta_key' => 'Ad Status', 
-            'meta_value' => 'Active', 
-            'posts_per_page' => 1 
-        );
-        $myposts = get_posts( $args );
-        if($myposts):
-        foreach( $myposts as $post ) :  setup_postdata($post); $size = 'full'?>
-                <div id="the-damn-header-ad" class="text-center">
-                    <?php if ( has_post_thumbnail() ) {?>
-                        <a target="_blank" title="Click for more info" href="<?php echo get_post_meta($post->ID, 'Ad Link', true);?>">
-                            <?php $attr = array(
-                                'class' => "attachment-$size img-responsive center-block",
-                            );
-                            the_post_thumbnail('full', $attr);?>
+                $args = array( 
+                    'post_type' => 'adverts', 
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'adtype',
+                            'field' => 'slug',
+                            'terms' => 'banner'
+                        )
+                    ),
+                    'meta_key' => 'Ad Status', 
+                    'meta_value' => 'Active', 
+                    'posts_per_page' => 1 
+                );
+
+                $myposts = get_posts( $args );
+                
+                if($myposts):
+                
+                    foreach( $myposts as $post ) : 
+
+                            $adid = $post->ID; 
+                            $attr = array(
+                                        'class' => "attachment-$size img-responsive pull-right",
+                                    );
+                            $link = get_post_meta($adid, 'Ad Link', true);
+                            if ( has_post_thumbnail($adid) ) :
+                                $image = get_the_post_thumbnail($adid, 'full', $attr); 
+                            endif;
+                            ?>
+
+                    <?php endforeach;
+
+                endif; ?>
+
+     <nav class="navbar navbar-light main-nav navbar-fixed-top shaded invisible amatic" id="fixed-main-nav">
+            <a class="navbar-brand dancing" href="<?php echo home_url(); ?>">Exeunt</a>
+            <?php wp_nav_menu( array( 'menu_class' => 'nav navbar-nav hidden-sm-down', 'container' => '', 'menu_id' => 'main-nav-fixed', 'depth' => '2', 'theme_location' => 'primary', 'walker' => new wp_bootstrap_navwalker() ) ); ?>
+            
+        </nav>
+
+    <div class="container" id="main">
+        
+        <div id="header" class="">
+
+            <div id="logo">
+
+                <h1 class="dancing"><a href="<?php echo home_url(); ?>">Exeunt</a></h1>
+
+            </div>
+
+            <?php if($adid) : ?>
+
+                <?php if ( $image ) : ?>
+            
+                    <div id="the-damn-header-ad" class="text-right hidden-sm-down">
+                        
+                        <a target="_blank" title="Click for more info" href="<?php echo $link; ?>">
+                                        
+                            <?php echo $image;?>
+                                    
                         </a>
-                    <?php }
-                        else {
-                            echo get_the_excerpt();
-                        }?>
+                        
+                        <div class="clearfix"></div>
+                            
+                    </div>
+        
+                <?php endif; ?>
+                                                            
+            <?php endif; ?>
+
+        </div><!--header-->
+
+        <?php if($adid) : ?>
+
+            <?php if ( $image ) : ?>
+        
+                <div id="secondary-header-ad" class="text-right hidden-md-up">
+
+                    <hr>
+                    
+                    <a target="_blank" title="Click for more info" href="<?php echo $link; ?>">
+                                    
+                        <?php echo $image;?>
+                                
+                    </a>
+                    
+                    <hr>
+                        
                 </div>
-        <?php endforeach;
-        endif; ?>
+    
+            <?php endif; ?>
+                                                        
+        <?php endif; ?>
 
-    <div id="navbar-placeholder">
-
-    <nav class="navbar navbar-default gil" id="main-nav">
-        <div class="container-fluid">
-
-                <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
-                  <a class="navbar-brand" href="<?php bloginfo('url');?>">Exeunt</a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-
-        <?php wp_nav_menu( array( 'menu_class' => 'nav navbar-nav', 'container' => '', 'depth' => '2', 'theme_location' => 'primary', 'walker' => new wp_bootstrap_navwalker() ) ); ?>
-        <?php //get_search_form();?>
-
-            <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-
-          </div><!-- /.navbar-collapse -->
-
-        </div>
-    </nav>
-    </div><!--navbar placeholder-->
+        <nav class="navbar navbar-light main-nav amatic hidden-sm-down" id="main-nav">
+            <a class="navbar-brand" href="<?php echo home_url(); ?>">magazine</a>
+            <?php wp_nav_menu( array( 'menu_class' => 'nav navbar-nav hidden-md-down', 'container' => '', 'depth' => '2', 'theme_location' => 'primary', 'walker' => new wp_bootstrap_navwalker() ) ); ?>
+        </nav>
         

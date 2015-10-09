@@ -13,12 +13,10 @@
 
 	if ( function_exists( 'add_image_size' ) ) { 
 		add_image_size( 'home-feat', 620, 340, true);
-		add_image_size( 'home-carousel', 780, 320, true);
-		add_image_size( 'boots2', 140, 140, true);
+		add_image_size( 'x-large', 770, 420, true);
 		add_image_size( 'boots3', 220, 145, true);
 		add_image_size( 'boots4', 300, 300, true);
 		add_image_size( 'feat-thumb', 300, 200, true );
-		add_image_size( 'button', 80, 80, true );
 	}
 
 	register_nav_menus( array(
@@ -71,7 +69,7 @@
 						'has_archive' => true,
 						'rewrite' => array('slug' => 'reviews'),
 						'menu_position' => 5,
-						'menu_icon' => 'dashicons-editor-paragraph',
+						'menu_icon' => 'dashicons-media-document',
 						'query_var' => true
 				)
 			);
@@ -98,7 +96,7 @@
 						'supports' => array( 'title', 'editor', 'comments', 'trackbacks', 'revisions', 'author', 'excerpt', 'thumbnail', 'post-formats', 'custom-fields' ),
 						'taxonomies' => array( 'post_tag', 'category', 'featured', 'edinburgh', 'festivals', 'carousel'),
 						'menu_position' => 5,
-						'menu_icon' => 'dashicons-editor-paragraph',
+						'menu_icon' => 'dashicons-welcome-write-blog',
 						'query_var' => true
 				)
 			);
@@ -106,7 +104,7 @@
 				register_post_type( 'podcast',
 				array(
 					'labels' => array(
-						'name' => __( 'Audio/Video' ),
+						'name' => __( 'Podcasts' ),
 						'singular_name' => __( 'Podcast' ),
 						'add_new' => __( 'Add New Podcast' ),
 						'add_new_item' => __( 'Add New Podcast' ),
@@ -123,37 +121,10 @@
 						'public' => true,
 						'has_archive' => true,
 						'rewrite' => array('slug' => 'podcasts'),
-						'supports' => array( 'title', 'editor', 'comments', 'trackbacks', 'revisions', 'author', 'excerpt', 'thumbnail', 'post-formats' ),
+						'supports' => array( 'title', 'editor', 'comments', 'trackbacks', 'revisions', 'author', 'excerpt', 'thumbnail', 'post-formats', 'festivals' ),
 						'taxonomies' => array( 'post_tag', 'category', 'featured', 'edinburgh'),
 						'menu_position' => 5,
-						'menu_icon' => 'dashicons-editor-paragraph',
-						'query_var' => true
-				)
-			);
-			
-			register_post_type( 'comps',
-				array(
-					'labels' => array(
-						'name' => __( 'Competitions' ),
-						'singular_name' => __( 'Competition' ),
-						'add_new' => __( 'Add New Competition' ),
-						'add_new_item' => __( 'Add New Competition' ),
-						'edit' => __( 'Edit' ),
-						'edit_item' => __( 'Edit Competition' ),
-						'new_item' => __( 'New Competition' ),
-						'view' => __( 'View Competition' ),
-						'view_item' => __( 'View Competition' ),
-						'search_items' => __( 'Search Competition' ),
-						'not_found' => __( 'No Competitions found' ),
-						'not_found_in_trash' => __( 'No Competitions found in Trash' ),
-						'parent' => __( 'Parent Competition' )
-					),
-						'public' => true,
-						'rewrite' => array('slug' => 'comps'),
-						'supports' => array( 'title', 'editor', 'trackbacks', 'excerpt', 'thumbnail' ),
-						'taxonomies' => array( 'post_tag', 'category', 'featured', 'edinburgh'),
-						'menu_position' => 5,
-						'menu_icon' => 'dashicons-editor-paragraph',
+						'menu_icon' => 'dashicons-microphone',
 						'query_var' => true
 				)
 			);
@@ -180,67 +151,12 @@
 				'supports' => array( 'title', 'excerpt', 'thumbnail' ),
 				'taxonomies' => array( 'adtype', 'adpos'),
 				'menu_position' => 5,
-						'menu_icon' => 'dashicons-editor-paragraph',
+						'menu_icon' => 'dashicons-slides',
 				'query_var' => false,
 				'exclude_from_search' => true
 		)
 	);
 	
-	register_post_type( 'home_carousel',
-		array(
-			'labels' => array(
-				'name' => __( 'Carousel' ),
-				'singular_name' => __( 'Carousel Image' ),
-				'add_new' => __( 'Add New Carousel Image' ),
-				'add_new_item' => __( 'Add New Carousel Image' ),
-				'edit' => __( 'Edit' ),
-				'edit_item' => __( 'Edit Carousel Image' ),
-				'new_item' => __( 'New Carousel Image' ),
-				'view' => __( 'View Carousel Image' ),
-				'view_item' => __( 'View Carousel Image' ),
-				'search_items' => __( 'Search Carousel Images' ),
-				'not_found' => __( 'No Carousel Images found' ),
-				'not_found_in_trash' => __( 'No Carousel Images found in Trash' ),
-				'parent' => __( 'Parent Carousel Image' )
-			),
-				'public' => false,
-				'show_ui' => true,
-				'supports' => array( 'title', 'excerpt', 'thumbnail' ),
-				'taxonomies' => array( 'featured'),
-				'menu_position' => 5,
-						'menu_icon' => 'dashicons-editor-paragraph',
-				'query_var' => false,
-				'exclude_from_search' => true
-		)
-	);
-	
-	register_post_type( 'catimages',
-		array(
-			'labels' => array(
-				'name' => __( 'Category Images' ),
-				'singular_name' => __( 'Category Image' ),
-				'add_new' => __( 'Add New Category Image' ),
-				'add_new_item' => __( 'Add New Category Image' ),
-				'edit' => __( 'Edit' ),
-				'edit_item' => __( 'Edit Category Image' ),
-				'new_item' => __( 'New Category Image' ),
-				'view' => __( 'View Category Image' ),
-				'view_item' => __( 'View Category Image' ),
-				'search_items' => __( 'Search Category Image' ),
-				'not_found' => __( 'No Category Images found' ),
-				'not_found_in_trash' => __( 'No Category Images found in Trash' ),
-				'parent' => __( 'Parent Category Image' )
-			),
-				'public' => false,
-				'show_ui' => true,
-				'supports' => array( 'title', 'thumbnail' ),
-				'taxonomies' => array( 'featured', 'venues', 'festivals', 'category'),
-				'menu_position' => 5,
-						'menu_icon' => 'dashicons-editor-paragraph',
-				'query_var' => false,
-				'exclude_from_search' => true
-		)
-	);			
 } //end registering post types
 
 function jquery_cdn() {
@@ -257,7 +173,7 @@ function exeunt_register_assets() {
 
 	$td = get_template_directory_uri();
     
-    wp_register_script( 'bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js', array('jquery'), '1', true );
+    wp_register_script( 'bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/js/bootstrap.min.js', array('jquery'), '1', true );
     wp_register_script( 'bootstrap_js_offline', $td . '/js/bootstrap.min.js', array('jquery'), '1', true );
 
     wp_register_script( 'exeunt_scripts', $td . '/js/main.js', array('jquery'), '1', true );
@@ -265,8 +181,10 @@ function exeunt_register_assets() {
     wp_register_script( 'respond', $td . '/js/respond.min.js', array('jquery'), '1', true );
             
     wp_register_style( 'open-sans', 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700', false, '1', 'screen' );        
+    wp_register_style( 'roboto-sans', 'https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900,100italic,300italic,400italic,500italic,700italic,900italic|Amatic+SC:400,700|Dancing+Script:400,700', false, '1', 'screen' );        
     
-    wp_register_style( 'bootstrapstyles', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css', false, '1', 'all' );
+    wp_register_style( 'bootstrapstyles', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css', false, '1', 'all' );
+    wp_register_style( 'fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', false, '1', 'all' );
     wp_register_style( 'bootstrapstyles_offline', $td . '/css/bootstrap.min.css', false, '1', 'all' );
             
 }
@@ -274,19 +192,19 @@ add_action( 'wp_enqueue_scripts', 'exeunt_register_assets' );
 
 function exeunt_scripts_and_styles() {
 	
-	wp_enqueue_style( "bootstrapstyles_offline" );
+	wp_enqueue_style( "bootstrapstyles" );
 	wp_enqueue_style( 'mainStyles', get_stylesheet_uri() );
 	
     wp_enqueue_script( "jquery" );
-    wp_enqueue_script( "bootstrap_js_offline" );
+    wp_enqueue_script( "bootstrap" );
     wp_enqueue_script( "modernizr" );
     wp_enqueue_script( "exeunt_scripts" );
 	wp_localize_script('exeunt_scripts', 'WP_AJAX', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ));
 
     wp_enqueue_style( "fontawesome" );
-    wp_enqueue_style( "open-sans" );
+    wp_enqueue_style( "roboto-sans" );
     
-    wp_enqueue_script( "respond" );
+    //wp_enqueue_script( "respond" );
 
 }
 
@@ -387,6 +305,167 @@ function ucc_include_custom_post_types( $query ) {
 
   return $query;
 }
+
+function massive_author($postid, $authorid, $authorlink, $author) {
+
+	$only_ga = get_post_meta($postid, 'only_ga', true);
+        
+    if ( $only_ga == 'Yes' ) {
+        
+        $guestauthorname = get_post_meta($postid, 'GuestAuthor', true);
+        
+        $guestauthorlink = get_post_meta($postid, 'GuestLink', true);
+		
+		if ( $guestauthorlink ) { 
+			echo '<a href="'. $guestauthorlink.'">By '.$guestauthorname.'</a>'; 
+		} else { 
+			echo 'By '.$guestauthorname;
+		}
+		 
+	} //only ga
+	
+	else { //not ga he_author_meta( 'display_name', 25 );
+		
+   		echo '<a id="authorinfolink" title="Find out more about '. $author .'" href="#author-info">By '.$author.'</a>';
+
+   		$co_authors = get_post_meta($mainid, 'CoAuthor', false);
+
+   		if($co_authors):
+		
+			foreach($co_authors as $co_author):
+		
+				$co_author_page = get_author_posts_url($co_author);
+		
+				$co_author_name = get_the_author_meta('display_name',$co_author);
+		
+				echo ' and <a title="More reviews by '. $co_author_name.'" href="' .$co_author_page.'">'.$co_author_name.'</a>';
+		
+			endforeach; 
+
+		endif;
+
+		$guestauthorname = get_post_meta($postid, 'GuestAuthor', true);
+        
+        $guestauthorlink = get_post_meta($postid, 'GuestLink', true);
+ 
+ 		if ( $guestauthorname ) { 
+
+ 			echo ' and <a href="'. $guestauthorlink.'">'.$guestauthorname.'</a>'; 
+
+ 		} //if there is a guest author
+ 
+ } //not ga
+
+} //function
+
+function wp_bs_pagination($pages = '', $range = 4)
+ 
+{  
+ 
+     $showitems = ($range * 2) + 1;  
+  
+     global $paged;
+ 
+     if(empty($paged)) $paged = 1;
+ 
+ 
+     if($pages == '')
+ 
+     {
+ 
+         global $wp_query; 
+ 
+		 $pages = $wp_query->max_num_pages;
+ 
+         if(!$pages)
+ 
+         {
+ 
+             $pages = 1;
+ 
+         }
+ 
+     }   
+ 
+ 
+ 
+     if(1 != $pages)
+ 
+     {
+ 
+        echo '<div class="text-center">'; 
+        echo '<nav><ul class="pagination"><li class="disabled hidden-xs"><span><span aria-hidden="true">Page '.$paged.' of '.$pages.'</span></span></li>';
+ 
+         if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo "<li><a href='".get_pagenum_link(1)."' aria-label='First'><i class=\"fa fa-angle-double-left\"></i><span class='hidden-xs'> First</span></a></li>";
+ 
+         if($paged > 1 && $showitems < $pages) echo "<li><a href='".get_pagenum_link($paged - 1)."' aria-label='Previous'><i class=\"fa fa-angle-left\"></i><span class='hidden-xs'> Previous</span></a></li>";
+ 
+ 
+ 
+         for ($i=1; $i <= $pages; $i++)
+ 
+         {
+ 
+             if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems ))
+ 
+             {
+ 
+                 echo ($paged == $i)? "<li class=\"active\"><span>".$i." <span class=\"sr-only\">(current)</span></span>
+ 
+    </li>":"<li><a href='".get_pagenum_link($i)."'>".$i."</a></li>";
+ 
+             }
+ 
+         }
+ 
+ 
+ 
+         if ($paged < $pages && $showitems < $pages) echo "<li><a href=\"".get_pagenum_link($paged + 1)."\"  aria-label='Next'><span class='hidden-xs'>Next </span><i class=\"fa fa-angle-right\"></i></a></li>";  
+ 
+         if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo "<li><a href='".get_pagenum_link($pages)."' aria-label='Last'><span class='hidden-xs'>Last </span><i class=\"fa fa-angle-double-right\"></i></a></li>";
+ 
+         echo "</ul></nav>";
+         echo "</div>";
+     }
+ 
+}
+function vertad() {
+	global $post;
+	$args = array( 'post_type' => 'adverts', 'tax_query' => array(
+			array(
+				'taxonomy' => 'adtype',
+				'field' => 'slug',
+				'terms' => 'vertical'
+			)
+		), 'meta_key' => 'Ad Status', 'meta_value' => 'Active', 'numberposts' => 1 );
+	$myposts = get_posts( $args );
+	foreach( $myposts as $post ) :	setup_postdata($post);?>
+			<div class="pull-right img-thumb" id="the-vertical-ad"><?php if ( has_post_thumbnail() ) {?>
+			<a target="_blank" title="Click for more info" href="<?php echo get_post_meta($post->ID, 'Ad Link', true);?>">
+			<?php the_post_thumbnail();?>
+			</a><?php }else {echo get_the_excerpt();}?></div>
+	<?php endforeach; wp_reset_query();
+}
+
+add_filter( 'get_the_archive_title', function ($title) {
+
+    if ( is_category() ) {
+
+            $title = single_cat_title( '', false );
+
+        } elseif ( is_tag() ) {
+
+            $title = single_tag_title( '', false );
+
+        } elseif ( is_post_type_archive() ) {
+
+            $title = post_type_archive_title( '', false );
+
+        }
+
+    return $title;
+
+});
 
 require get_template_directory() . '/inc/template-tags.php';
 

@@ -45,7 +45,7 @@
                             foreach($carousel_features as $post): setup_postdata($post);
                             $sequence++;
                             ?>
-                            <div class="item <?php if($sequence == 1){echo 'active';} ?>">
+                            <div class="carousel-item <?php if($sequence == 1){echo 'active';} ?>">
                                 <?php if ( has_post_thumbnail() ) { ?>
                                     <a href="<?php echo get_post_meta($post->ID, 'Image Link', true);?>">
                                         <?php $attr = array(

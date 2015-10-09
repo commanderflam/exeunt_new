@@ -37,8 +37,10 @@
 		$type = $obj->label;
 		
 		$link = get_post_type_archive_link($pt);
+
+		$authorid = get_the_author_meta( 'ID' );
 		
-		$authorlink = get_author_posts_url( get_the_author_meta( 'ID' ));
+		$authorlink = get_author_posts_url( $authorid );
 		
 		$author = get_the_author();
 
@@ -46,21 +48,44 @@
 
 		$venues = wp_get_post_terms( $post->ID, 'venues' );
 
+		$cats = wp_get_post_terms( $post->ID, 'category', $args );
+
+		if($cats):
+			foreach($cats as $cat):
+				//print_r2($cat);
+				if($cat->slug !== 'features'){
+					$catlist[$cat->name] = get_category_link($cat->term_id);
+				}
+			endforeach;
+		endif;
+
+		
+
 		//print_r2($meta);
 
 		//the_category();
 
 	?>
+	 	<h6 class="section-heading gil"><span class="spaced"><a class="<?php echo $pt; ?>" href="<?php echo $link; ?>"><?php if($type == 'Features' || $type == 'Reviews'){ echo $type. '</a>'; } ?>
+	 		<?php if($catlist):
+			foreach($catlist as $label => $link):
+				echo '<span> &bull; <a href="'.$link.'">'.$label.'</a></span>';
+			endforeach;
+		endif; ?>
+		</span>
+
+		<span class="pull-right text-right text-capitalize text-muted"><em>Published <?php the_time('j F Y'); ?></em></span>
+
+	 	</h6>
 	 	<hr>
-	 	<h4 class="section-heading gil center spaced"><a href="<?php echo $link; ?>"><?php echo $type; ?></a></h4>
 		<?php
 			if ( is_single() ) :
-				the_title( '<h1 class="entry-title center">', '</h1>' );
+				the_title( '<h1 class="entry-title">', '</h1>' );
 			else :
 				the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
 			endif;
 		?>
-		<h5 class="caps center text-muted">
+		<h6 class="text-uppercase text-muted">
 			<?php  
 		
 				if($venues){ 
@@ -72,7 +97,7 @@
 
 					echo ' '.get_post_meta($post->ID, "Running Dates", $single = true);?>
 
-		</h5>
+		</h6>
 
 		<?php
 
@@ -80,15 +105,16 @@
 
 		if ( $pt == 'features' && $feature_intro) { ?>
 
-			<div class="article-lead center george it"><?php echo $feature_intro; ?></div>
+			<div class="article-lead  george it"><?php echo $feature_intro; ?></div>
 
 		<?php } else { ?>
 		
-			<div class="article-lead center george it"><?php echo the_excerpt(); ?></div>
+			<div class="article-lead  george it"><?php echo the_excerpt(); ?></div>
 
 		<?php } ?>
-	
-		<h4 class="author-title center gil"><a href="<?php echo $authorlink; ?>" title="See all articles written by <?php echo $author; ?>">By <?php echo $author; ?></a></h4>
+
+		<h5 class="author-title gil"><?php massive_author($post->ID, $authorid, $authorlink, $author); ?></h5>
+		
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
@@ -113,8 +139,8 @@
 			endif;
 
 			wp_link_pages( array(
-				'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentyfifteen' ) . '</span>',
-				'after'       => '</div>',
+				'before'      => '<div class="page-links gil"><span class="page-links-title">' . __( 'Pages:', 'twentyfifteen' ) . '</span>',
+				'after'       => '</div><hr>',
 				'link_before' => '<span>',
 				'link_after'  => '</span>',
 				'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'twentyfifteen' ) . ' </span>%',
@@ -123,12 +149,25 @@
 		?>
 	</div><!-- .entry-content -->
 
+		<?php 
+
+			$urltitle = urlencode( get_the_title() );
+			$urlurl = urlencode( get_the_permalink() );
+
+		?>
+
+			<div id="social-media" class="btn-group btn-group-sm gil spaced " role="group" aria-label="Basic example">
+				<a class="btn btn-primary twitter" target="_blank" href="http://twitter.com/intent/tweet?status=<?php echo $urltitle; ?>+<?php echo $urlurl; ?>"><i class="fa fa-twitter"></i> Tweet</a>
+            	<a class="btn btn-primary fb" target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=<?php echo $urlurl; ?>&title=<?php echo $urltitle; ?>"><i class="fa fa-facebook-official"></i> Share</a>
+                <a class="btn btn-primary gplu" href="https://plus.google.com/share?url=<?php echo $urlurl; ?>"><i class="fa fa-google-plus"></i></a>
+			</div>
+
 	<?php
 		// Author bio.
 		if ( is_single() && get_the_author_meta( 'description' ) ) :
 			get_template_part( 'author-bio' );
 		else :
-			echo '<hr><p><a class="author-link" href="'.esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ).'" rel="author"><span class="gil">'.$author.'</span></a> is a contributor to '.get_bloginfo('name').'.</p>';
+			echo '<hr><p><a class="btn btn-secondary author-link" href="'.esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ).'" rel="author"><span class="gil">'.$author.'</span></a> is a contributor to '.get_bloginfo('name').'.</p>';
 		endif;
 	?>
 
@@ -148,9 +187,8 @@
 
 		<?php if ( $pt == 'review' ) : ?>
 
-			<div class="panel" id="show-meta">
+			<div class="card card-block" id="show-meta">
 
-				<div class="panel-body">
 					
 					<?php 
 
@@ -164,11 +202,11 @@
 
 									if($key == 'External Link'):
 
-										echo '<h5><strong class="gil">'.$value.'</strong></h5><p><a href="'.$meta_check.'">'.$meta_check.'</a></p>';
+										echo '<p><small><strong class="gil">'.$value.'</strong></small> <a href="'.$meta_check.'">'.$meta_check.'</a></p>';
 
 									else:
 
-										echo '<h5><strong class="gil">'.$value.'</strong></h5><p>'.$meta_check.'</p>';
+										echo '<p><small><strong class="gil">'.$value.'</strong></small> '.$meta_check.'</p>';
 
 									endif;
 
@@ -177,15 +215,13 @@
 							}
 					?>
 
-				</div>
 
 			</div>
 
 		<?php endif; ?>
 
-			<div class="panel" id="single-side-ad">
+			<div class="card card-block" id="single-side-ad">
 
-				<div class="panel-body">
 
 					<?php $args = array(
 			            'post_type' => 'adverts',
@@ -203,9 +239,9 @@
 			        $mpu1 = get_posts( $args );
 			        if($mpu1):
 			            foreach( $mpu1 as $post ) : setup_postdata($post);?>
-			                <div class="some-damn-ad p5 text-right">
+			                <div class="some-damn-ad p5 text-center">
 			                    <?php if ( has_post_thumbnail() ) {?>
-			                        <p class="text-muted"><small>Advertisement</small></p>
+			                        <p class="text-muted m-y-0"><small>Advertisement</small></p>
 			                        <a target="_blank" title="Click for more info" href="<?php echo get_post_meta($post->ID, 'Ad Link', true);?>">
 			                            <?php the_post_thumbnail('full');?>
 			                        </a><?php }else {echo get_the_excerpt();}?>
@@ -215,7 +251,35 @@
 
 				</div>
 
-			</div>
+		<div class="card card-block">
+
+			<h3 class="text-center"><i class="fa fa-envelope"></i><br />subscribe to the<br/>exeunt newsletter</h3>
+                <hr>
+                <p class="text-center">Enter your email address below to get an occasional email with Exeunt updates and featured articles.</p>
+                <hr>
+                <!-- Begin MailChimp Signup Form -->
+                <div id="mc_embed_signup">
+                <form action="//exeuntmagazine.us2.list-manage.com/subscribe/post?u=11dd1f596e140a1abc054299f&amp;id=d347ea60ae" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                    <div id="mc_embed_signup_scroll">
+                    
+                <div class="mc-field-group form-group">
+                    <label class="center-block text-center" for="mce-EMAIL">email address </label>
+                    <input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL">
+                </div>
+                    <div id="mce-responses" class="clear">
+                        <div class="response" id="mce-error-response" style="display:none"></div>
+                        <div class="response" id="mce-success-response" style="display:none"></div>
+                    </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                    <div style="position: absolute; left: -5000px;"><input type="text" name="b_11dd1f596e140a1abc054299f_d347ea60ae" tabindex="-1" value=""></div>
+                    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button btn btn-primary center-block"></div>
+                    </div>
+                </form>
+                </div>
+
+                <!--End mc_embed_signup-->
+
+		</div><!--card-->
+
 
 		</div>
 

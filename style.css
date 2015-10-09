@@ -9,23 +9,51 @@ Tags: academic, cultural
 
 */
 
+/* I. General Rewrites */
+
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
-body.single {
-    background-color: #f1f1f1;
-}
+
+/* II. Header Rules & Header Mods */
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "brandon-grotesque", 'Gill Sans', sans-serif;
 }
-.center {
-    text-align: center;
+h6 {
+    font-size: .9rem;
+}
+h6.feature-date {
+    font-weight: 300;
+}
+.tile h6 {
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: .04em;
+    margin-top: 15px;
+    font-size: .9rem;
+}
+.tile h3 {
+    margin-top: 0;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+.tile p {
+    font-weight: 300;
+}
+header.page-header h1 {
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+/* III. Utilities */
+
+.fw-400 {
+    font-weight: 400;
 }
 .it {
     font-style: italic;
-}
-.caps {
-    text-transform: uppercase;
 }
 .spaced {
     letter-spacing: .1em;
@@ -33,79 +61,185 @@ h1, h2, h3, h4, h5, h6 {
 .nowrap {
     white-space: nowrap;
 }
-#main {
-}
-#hero-div {
-    display: table;
-    height: 320px;
-}
-#hero-text {
-    display: table-cell;
-    vertical-align: middle;
-}
-#hero-text h1 {
-    margin-top: 0;
-}
-#the-damn-header-ad {
-    padding: 10px 0;
-}
-#site-footer {
-    background: #f9f9f9;
-    padding: 3rem 0;
-    border-top: 1px solid #f7f7f7;
-}
-.tile {
-    padding: 15px 30px 0 30px;
-}
 .border-r {
     border-right: 1px solid #ddd;
 }
 .border-l {
     border-left: 1px solid #ddd;
 }
-.tile h6 {
-    text-transform: uppercase;
-    font-weight: 500;
-    letter-spacing: .04em;
-    margin-top: 15px;
-}
-.tile h3 {
-    margin-top: 0;
-    text-transform: uppercase;
-    font-weight: 500;
-}
-.tile p {
-    font-style: italic;
-}
-.tile span.author, td.author, .gil {
-    font-style: normal;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-family: "brandon-grotesque", 'Gill Sans', sans-serif;
-}
-.gill {
-    font-family: "brandon-grotesque", 'Gill Sans', sans-serif;
-}
 .george {
-    font-family: Georgia, Palatino, Times, 'Times New Roman', serif;
+    font-family: 'adelle', Georgia, Palatino, Times, 'Times New Roman', serif;
 }
-td.author {
-    white-space: nowrap;
-    text-align: right;
-    font-weight: 600;
+.amatic {
+    font-family: 'Amatic SC', cursive;
 }
-.toc-ex p {
-    font-style: italic;
-    font-family: Georgia, Palatino, Times, 'Times New Roman', serif;
+.dancing {
+    font-family: 'Dancing Script', cursive;
 }
-.toc-head {
+.invis {
+    display: none;
+}
+.twitter {
+    background-color: #00aced;
+}
+.fb {
+    background-color: #3b5998;
+}
+.gplu {
+    background-color: #dd4b39;
+}
+a.review {
+    color: #FF6138;
+}
+a.feature, a.features, .feature {
+    color: #00A388;
+}
+.big {
+    font-size: 120%;
+}
+
+/* IV. Principal Navigation Styles */
+
+#main-nav, .main-nav {
+    border-bottom: 1px solid #444;
+    background-color: #fff;
+    border-top: .0625rem solid rgba(0,0,0,.1);
+}
+.main-nav.shaded {
+    box-shadow:0 5px 10px 0 rgba(0,0,0,0.15),0 -5px 3px -10px #fff;
+    border-bottom: none;
+}
+.main-nav.navbar-light .navbar-nav .nav-link {
+    color:rgba(0,0,0,.8)
+}
+.main-nav.navbar-light .navbar-nav .nav-link:hover {
+    color:rgba(0,0,0,.3)
+}
+#main-nav {
+    margin-bottom: 20px;
+    padding-left: 0;
+    font-weight: 700;
+    text-transform: lowercase;
+}
+#main-nav a.navbar-brand {
+    font-size: 2rem;
+    letter-spacing: 1rem;
+    font-weight: 700;
+    padding: 0;
+    line-height: 2rem;
+}
+#fixed-main-nav a.navbar-brand {
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: 700;
+    padding: 0;
+}
+#fixed-main-nav {
+    font-weight: 700;
+    text-transform: lowercase;
+}
+#main-nav li, #fixed-main-nav li {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+}
+#main-nav li a, #fixed-main-nav li a {
+    letter-spacing: .1rem;
+}
+.navbar {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+}
+.navbar-default {
+    background-color: #fff;
+}
+
+/* V. Homepage Carousel */
+
+.hero-div {
+    display: table;
+    height: 355px;
+}
+.hero-text {
+    display: table-cell;
+    vertical-align: middle;
+}
+.hero-text a {
+    color: #444;
+}
+.hero-text h1 {
     margin-top: 0;
 }
-body.single article {
-    margin-top: 3em;
-    background: #fff;
-    padding: 2em 4em 4em 4em;
+.hero-text h5 {
+    font-weight: 300;
+    line-height: 1.5;
 }
+.carousel-indicators {
+    left: 0;
+    width: 100%;
+    margin-left: 30px;
+    text-align: left;
+}
+#carousel-home {
+    height: 355px;
+    overflow: hidden;
+}
+
+/* VI. Common Components */
+
+.tile {
+    padding: 0px 10px 0 10px;
+}
+.tile h3 a, .feature-list a {
+    color: #444;
+}
+
+/* VII. Logotype */
+
+#header {display: table; width: 100%;}
+#logo {display: table-cell; vertical-align: bottom;}
+#logo h1 {
+    font-size: 5rem;
+    /*margin-left: -10px;*/
+    line-height: 5rem;
+    margin-bottom: 0;
+}
+#logo h1 span {
+    margin-left: -2px;
+}
+#logo h1 a {
+    color: black;
+}
+#logo h1 a:hover {
+    text-decoration: none;
+    color: black;
+}
+#logo h2 {
+    letter-spacing: 1rem;
+    margin-top: -15px;
+    font-weight: 700;
+}
+.full-block {
+    margin-left: -.9375rem;
+    margin-right: -.9375rem;
+    margin-top: -1rem;
+    margin-bottom: -.9375rem;
+    padding: .9375rem;
+    padding-top: 1.2rem;
+}
+.full-block hr {
+    border-color: transparent;
+}
+.full-block.yellow {
+    background-color: #FFF0A5;
+}
+.full-block.blue {
+    background-color: #ADD6C0;
+}
+
+/* VIII. Review Sidebar */
+
 #show-meta, #single-side-ad {
     margin-top: 3em;
 }
@@ -121,11 +255,38 @@ body.single article {
 #show-meta p + h5 {
     margin-top: 20px;
 }
+#show-meta {
+    background-color: #E6E8DA;
+    margin-left: -15px;
+    padding-left: 1.25rem+15px;
+    border: none;
+    border-radius: 0;
+    margin-top: 5em;
+}
+
+/* IX. Ads */
+
+#the-damn-header-ad {
+    padding: 10px 0;
+}
+#the-vertical-ad.pull-right {
+    margin-left: 15px;
+}
+
+/* X. Article Styling */
+
+body.single article, body.page article {
+    background-color:rgba(255,255,255,0.3);
+    padding: 2em 4em 4em 4em;
+    margin-left: -15px;
+    margin-right: -15px;
+}
 article .entry-content {
-    font-family: Georgia, Palatino, Times, 'Times New Roman', serif;
-    font-size: 1.4em;
-    line-height: 1.6em;
+    font-family: 'adelle', Georgia, Palatino, Times, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
     color: rgb(65, 65, 65);
+    font-weight: 100;
 }
 body.archive article .entry-content {
     font-size: 1.2em;
@@ -139,18 +300,27 @@ body.archive article .entry-content p {
 body.single article .entry-header {
     margin-bottom: 2em;
 }
+.entry-header h6 a {
+    color: #444;
+}
 article div.article-lead {
     margin-bottom: 25px;
 }
 h1.entry-title {
     margin-bottom: 20px;
 }
+div.wp-caption {
+    margin-left: -40px;
+}
 p.wp-caption-text {
     font-family: 'Gill Sans', sans-serif;
     font-size: 14px;
     line-height: 14px;
     margin: 10px 0;
-    text-align: right;
+    clear: both;
+}
+div.wp-caption a {
+    display: block;
 }
 h1.entry-title + h5 {
     margin-top: -5px;
@@ -158,19 +328,86 @@ h1.entry-title + h5 {
 }
 h3.archive-entry-title {
     margin: 0;
-}
-.carousel-inner {
-    background-color: #000;
+    font-size: 1.25rem;
+    font-weight: 400;
 }
 div.author-tile {
     min-height: 100px;
 }
-.navbar {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-radius: 0;
+h5.author-title {
+    font-size: 1rem;
+    font-weight: 300;
 }
-.navbar-default {
-    background-color: #fff;
+
+/*-----------------------------------------*/
+
+#site-footer {
+    background: #f9f9f9;
+    padding: 3rem 0;
+    border-top: 1px solid #f4f4f4;
+}
+.tile p {
+    font-style: italic;
+}
+.tile span.author, td.author, .gil {
+    font-style: normal;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: "brandon-grotesque", 'Gill Sans', sans-serif;
+}
+td.author {
+    white-space: nowrap;
+    text-align: right;
+    font-weight: 600;
+}
+.toc-ex p {
+    font-style: italic;
+    font-family: 'adelle', Georgia, Palatino, Times, 'Times New Roman', serif;
+}
+.toc-head {
+    margin-top: 0;
+}
+div.row.list {
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+#full-row {
+    margin-bottom: 4em;
+}
+#full-row h1{
+    color: #fff;
+}
+#full-row p {
+    color: #fff;
+    font-size: 1.25em;
+}
+.feature-list {
+    margin-bottom: 2.5rem;
+}
+.feature-list p {
+    font-weight: 300;
+}
+.feature-list h3 {
+    margin-bottom: .5rem;
+}
+#social-media .btn {
+    border: none;
+}
+.venue-info {
+    margin-top: 5px;
+    margin-bottom: 7px;
+}
+.author-caption {
+    margin-top: 10px; margin-bottom: 30px;
+}
+.author-title .btn {
+    white-space: normal;
+}
+h1#footer-logo {
+    font-size: 4rem;
+    margin-top: -30px;
+    color: #e0e0e0;
+}
+#site-footer a {
+    color: #555;
 }

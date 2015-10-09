@@ -4,62 +4,42 @@
         <div class="container">
             <div class="row">
 
-        <div class="col-lg-2">
-            <h5 class="caps gil">Features</h5>
-            <ul class="list-unstyled">
-                <li>Artist in Residence</li>
-                <li>Essays</li>
-                <li>Festivals</li>
-                <li>Literary Features</li>
-                <li>Q&amp;A and Interviews</li>
-            </ul>
+        <div class="col-lg-2 col-lg-offset-1">
+            <h5 class="fw-400 gil">Features</h5>
+            <?php wp_nav_menu(array('theme_location' => 'footer1', 'menu_class' => 'list-unstyled')); ?>
+
         </div><!--col 4-->
 
         <div class="col-lg-2">
-            <h5 class="caps gil">Reviews</h5>
-            <ul class="list-unstyled">
-                <li>Book Reviews</li>
-                <li>Dance</li>
-                <li>Opera</li>
-                <li>Performance</li>
-                <li>Screen</li>
-            </ul>
+            <h5 class="fw-400 gil">Reviews</h5>
+            <?php wp_nav_menu(array('theme_location' => 'footer2', 'menu_class' => 'list-unstyled')); ?>
+
         </div><!--col 4-->
 
         <div class="col-lg-2">
-            <h5 class="caps gil">London</h5>
+            <h5 class="fw-400 gil">London</h5>
             <ul class="list-unstyled">
                 <li></li>
             </ul>
         </div><!--col 4-->
 
         <div class="col-lg-2">
-            <h5 class="caps gil">National</h5>
+            <h5 class="fw-400 gil">National</h5>
             <ul class="list-unstyled">
                 <li></li>
             </ul>
         </div><!--col 4-->
 
         <div class="col-lg-2">
-            <h5 class="caps gil"></h5>
-            <ul class="list-unstyled">
-                <li></li>
-            </ul>
-        </div><!--col 4-->
-
-        <div class="col-lg-2">
-            <h5 class="caps gil">Exeunt Magazine</h5>
-            <ul class="list-unstyled">
-                <li>Subscribe</li>
-                <li>Staff and Contributors</li>
-                <li>About</li>
-                <li>Advertising</li>
-            </ul>
+            <h1 class="dancing" id="footer-logo">Exeunt</h1>
+            <?php wp_nav_menu(array('theme_location' => 'footer4', 'menu_class' => 'list-unstyled')); ?>
+            
         </div><!--col 4-->
 
         </div><!--row-->
         </div><!--container-->
        </div><!--site footer-->
+
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <!--<script>

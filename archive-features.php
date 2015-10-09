@@ -47,7 +47,7 @@
                             foreach($carousel_features as $post): setup_postdata($post);
                             $sequence++;
                             ?>
-                            <div class="item <?php if($sequence == 1){echo 'active';} ?>">
+                            <div class="carousel-item <?php if($sequence == 1){echo 'active';} ?>">
                                 <?php if ( has_post_thumbnail() ) { ?>
                                     <a href="<?php echo get_post_meta($post->ID, 'Image Link', true);?>">
                                         <?php $attr = array(
@@ -140,6 +140,10 @@
 				'next_text'          => __( 'Next page', 'twentyfifteen' ),
 				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyfifteen' ) . ' </span>',
 			) );
+
+			if (function_exists("wp_bs_pagination")) {
+			    wp_bs_pagination();
+			}
 
 		// If no content, include the "No posts found" template.
 		else :

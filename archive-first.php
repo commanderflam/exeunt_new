@@ -14,7 +14,7 @@
 
 		<div class="col-lg-8">
 
-			<?php twentyfifteen_post_thumbnail(); ?>
+			<?php twentyfifteen_post_thumbnail('home-carousel'); ?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 

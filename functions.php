@@ -21,9 +21,11 @@
 
 	register_nav_menus( array(
 		'primary' => 'Primary Navigation',
-		'reviews' => 'Reviews Subnav',
-		'features-menu' => 'Features Subnav',
+		'new-primary' => 'New Main Menu',
+		//'reviews' => 'Reviews Subnav',
+		//'features-menu' => 'Features Subnav',
 		'footer1' => 'Footer 1',
+		'new-footer1' => 'New Footer 1',
 		'footer2' => 'Footer 2',
 		'footer3' => 'Footer 3',
 		'footer4' => 'Footer 4',
@@ -306,7 +308,7 @@ function ucc_include_custom_post_types( $query ) {
   return $query;
 }
 
-function massive_author($postid, $authorid, $authorlink, $author) {
+function massive_author($postid, $authorid, $authorlink, $author, $display_link = true) {
 
 	$only_ga = get_post_meta($postid, 'only_ga', true);
         
@@ -316,43 +318,73 @@ function massive_author($postid, $authorid, $authorlink, $author) {
         
         $guestauthorlink = get_post_meta($postid, 'GuestLink', true);
 		
-		if ( $guestauthorlink ) { 
-			echo '<a href="'. $guestauthorlink.'">By '.$guestauthorname.'</a>'; 
+		if ( $guestauthorlink && $display_link == true ) { 
+			return '<a target="_blank" href="'. $guestauthorlink.'">By '.$guestauthorname.'</a>'; 
 		} else { 
-			echo 'By '.$guestauthorname;
+			return 'By '.$guestauthorname;
 		}
 		 
 	} //only ga
 	
 	else { //not ga he_author_meta( 'display_name', 25 );
-		
-   		echo '<a id="authorinfolink" title="Find out more about '. $author .'" href="#author-info">By '.$author.'</a>';
 
-   		$co_authors = get_post_meta($mainid, 'CoAuthor', false);
-
-   		if($co_authors):
+		if($display_link == true){
 		
-			foreach($co_authors as $co_author):
-		
-				$co_author_page = get_author_posts_url($co_author);
-		
-				$co_author_name = get_the_author_meta('display_name',$co_author);
-		
-				echo ' and <a title="More reviews by '. $co_author_name.'" href="' .$co_author_page.'">'.$co_author_name.'</a>';
-		
-			endforeach; 
+	   		return '<a id="authorinfolink" title="Find out more about '. $author .'" href="#author-info">By '.$author.'</a>';
 
-		endif;
+	   		$co_authors = get_post_meta($mainid, 'CoAuthor', false);
 
-		$guestauthorname = get_post_meta($postid, 'GuestAuthor', true);
-        
-        $guestauthorlink = get_post_meta($postid, 'GuestLink', true);
- 
- 		if ( $guestauthorname ) { 
+	   		if($co_authors):
+			
+				foreach($co_authors as $co_author):
+			
+					$co_author_page = get_author_posts_url($co_author);
+			
+					$co_author_name = get_the_author_meta('display_name',$co_author);
+			
+					return ' and <a title="More reviews by '. $co_author_name.'" href="' .$co_author_page.'">'.$co_author_name.'</a>';
+			
+				endforeach; 
 
- 			echo ' and <a href="'. $guestauthorlink.'">'.$guestauthorname.'</a>'; 
+			endif;
 
- 		} //if there is a guest author
+			$guestauthorname = get_post_meta($postid, 'GuestAuthor', true);
+	        
+	        $guestauthorlink = get_post_meta($postid, 'GuestLink', true);
+	 
+	 		if ( $guestauthorname ) { 
+
+	 			return ' and <a target="_blank" href="'. $guestauthorlink.'">'.$guestauthorname.'</a>'; 
+
+	 		} //if there is a guest author
+
+	 	}else {
+
+	 		return $author;
+
+	   		$co_authors = get_post_meta($mainid, 'CoAuthor', false);
+
+	   		if($co_authors):
+			
+				foreach($co_authors as $co_author):
+						
+					$co_author_name = get_the_author_meta('display_name',$co_author);
+			
+					return ' and '.$co_author_name;
+			
+				endforeach; 
+
+			endif;
+
+			$guestauthorname = get_post_meta($postid, 'GuestAuthor', true);
+	        	 
+	 		if ( $guestauthorname ) { 
+
+	 			return ' and '.$guestauthorname; 
+
+	 		} //if there is a guest author
+
+	 	}
  
  } //not ga
 
@@ -466,6 +498,23 @@ add_filter( 'get_the_archive_title', function ($title) {
     return $title;
 
 });
+
+function my_custom_single_popular_post( $post_html, $p, $instance ){
+	$author = massive_author($p->id, $p->uid, '', get_the_author_meta('display_name', $p->uid), false);
+    $output = '<li class="list-group-item"><a href="' . get_the_permalink($p->id) . '?source=pop" class="" title="' . esc_attr($p->title) . '">' . $p->title . '</a> <br />' . $author . '</li>';
+    //print_r2($p);
+    return $output;
+}
+add_filter( 'wpp_post', 'my_custom_single_popular_post', 10, 3 );
+
+function wpcodex_hide_email_shortcode( $atts , $content = null ) {
+	if ( ! is_email( $content ) ) {
+		return;
+	}
+
+	return '<a href="mailto:' . antispambot( $content ) . '">' . antispambot( $content ) . '</a>';
+}
+add_shortcode( 'antispam', 'wpcodex_hide_email_shortcode' );
 
 require get_template_directory() . '/inc/template-tags.php';
 

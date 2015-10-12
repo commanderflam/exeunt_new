@@ -199,7 +199,7 @@ a.feature, a.features, .feature {
 
 #header {display: table; width: 100%;}
 #logo {display: table-cell; vertical-align: bottom;}
-#logo h1 {
+#logo h1, #logotype h1 {
     font-size: 5rem;
     /*margin-left: -10px;*/
     line-height: 5rem;
@@ -215,7 +215,7 @@ a.feature, a.features, .feature {
     text-decoration: none;
     color: black;
 }
-#logo h2 {
+#logo h2, #logotype h2 {
     letter-spacing: 1rem;
     margin-top: -15px;
     font-weight: 700;
@@ -257,10 +257,7 @@ a.feature, a.features, .feature {
 }
 #show-meta {
     background-color: #E6E8DA;
-    margin-left: -15px;
-    padding-left: 1.25rem+15px;
     border: none;
-    border-radius: 0;
     margin-top: 5em;
 }
 
@@ -410,4 +407,22 @@ h1#footer-logo {
 }
 #site-footer a {
     color: #555;
+}
+.carousel-indicators li {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #eee;
+    border-radius: 13px;
+}
+.carousel-indicators .active {
+    width: 15px;
+    height: 15px;
+}
+span.pop-author a {
+    color: #444;
 }

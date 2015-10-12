@@ -113,7 +113,7 @@
 
 		<?php } ?>
 
-		<h5 class="author-title gil"><?php massive_author($post->ID, $authorid, $authorlink, $author); ?></h5>
+		<h5 class="author-title gil"><?php echo massive_author($post->ID, $authorid, $authorlink, $author); ?></h5>
 		
 	</header><!-- .entry-header -->
 
@@ -189,6 +189,9 @@
 
 			<div class="card card-block" id="show-meta">
 
+				<h2 class="gill"><?php the_title(); ?> Show Info</h2>
+				<hr>
+
 					
 					<?php 
 
@@ -220,7 +223,7 @@
 
 		<?php endif; ?>
 
-			<div class="card card-block" id="single-side-ad">
+			<div class="card" id="single-side-ad">
 
 
 					<?php $args = array(
@@ -248,14 +251,35 @@
 			                </div>
 			            <?php endforeach;
 			        endif; ?>
-
+			        <br />
 				</div>
+
+		<div class="card">
+
+			 <div class="card-block">
+			    <h2 class="card-title amatic text-center">Most Popular Posts</h2>
+			    <h4 class="card-text dancing text-center">in the past seven days</h4>
+			  </div>
+
+			<?php 
+				$pop_args = array(
+
+					'post_type' => 'features,review',
+					'stats_views' => 0,
+					'stats_author' => 1,
+					'wpp_start' => '<ul class="list-group list-group-flush">',
+					'post_html' => '<li class="list-group-item">{title} by <span class="pop-author text-uppercase">{author}</span></li>'
+
+					);
+				wpp_get_mostpopular($pop_args); ?>
+
+		</div><!--card-->
 
 		<div class="card card-block">
 
-			<h3 class="text-center"><i class="fa fa-envelope"></i><br />subscribe to the<br/>exeunt newsletter</h3>
+                <h3 class="text-center fw-400"><span class="amatic">the</span><br/><span class="dancing big">Exeunt</span><br /><span class="amatic spaced">newsletter</span></h3>
                 <hr>
-                <p class="text-center">Enter your email address below to get an occasional email with Exeunt updates and featured articles.</p>
+                <p class="text-center">Enter your <strong>email address</strong> below to get an occasional email with Exeunt updates and featured articles.</p>
                 <hr>
                 <!-- Begin MailChimp Signup Form -->
                 <div id="mc_embed_signup">
@@ -263,7 +287,6 @@
                     <div id="mc_embed_signup_scroll">
                     
                 <div class="mc-field-group form-group">
-                    <label class="center-block text-center" for="mce-EMAIL">email address </label>
                     <input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL">
                 </div>
                     <div id="mce-responses" class="clear">

@@ -122,12 +122,12 @@ jQuery(document).ready(function( $ ) {
 
 	function menu_item_size() { //main-nav-fixed
 		
-		var menuWidth = $('#menu-new-main-nav').innerWidth();
-		var items = $('#menu-new-main-nav').children('li').length;
-		var margs = $('#menu-new-main-nav>li:nth-child(2)').css('margin-left').replace("px", "");
+		var menuWidth = $('#menu-new-top-menu').innerWidth();
+		var items = $('#menu-new-top-menu').children('li').length;
+		var margs = $('#menu-new-top-menu>li:nth-child(2)').css('margin-left').replace("px", "");
 		var margs = parseInt(margs,10);
 		var total = 0;
-		$('#menu-new-main-nav>li').each(function(){
+		$('#menu-new-top-menu>li').each(function(){
 			var itemWidth = $(this).width();
 			var itemWidthPlus = itemWidth+margs;
 			total = total+itemWidthPlus;
@@ -136,7 +136,7 @@ jQuery(document).ready(function( $ ) {
 		var remainder = menuWidth-total;
 		var rightMargs = remainder/(items);
 
-		$('#menu-new-main-nav>li:not(:last-child), #main-nav a.navbar-brand').css('margin-right', rightMargs);
+		$('#menu-new-top-menu>li:not(:last-child), #main-nav a.navbar-brand').css('margin-right', rightMargs);
 
 	}
 

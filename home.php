@@ -223,7 +223,7 @@
 
             $args = array(
                 
-                'post_type' => 'any', 
+                'post_type' => array('review', 'features'), 
                 'posts_per_page' => 2, 
                 'post__not_in' => $exclude 
             
@@ -331,7 +331,7 @@
 
                     <?php $args = array(
                         
-                        'post_type' => 'any', 
+                        'post_type' => array('review', 'features'), 
                         'posts_per_page' => 1, 
                         'post__not_in' => $exclude,
                         'category_name' => 'columns'
@@ -379,7 +379,7 @@
 
             $args = array(
                 
-                'post_type' => 'any', 
+                'post_type' => array('review', 'features'), 
                 'posts_per_page' => 2, 
                 'post__not_in' => $exclude 
             
@@ -575,7 +575,7 @@
 
             $args = array(
                 
-                'post_type' => 'any', 
+                'post_type' => array('review', 'features'), 
                 'posts_per_page' => 4, 
                 'post__not_in' => $exclude 
             

@@ -66,7 +66,7 @@ $post_thumbnail_url = wp_get_attachment_url( $post_thumbnail_id ); echo $post_th
 
      <nav class="navbar navbar-light main-nav navbar-fixed-top shaded invisible amatic" id="fixed-main-nav">
             <a class="navbar-brand dancing" href="<?php echo home_url(); ?>">Exeunt</a>
-            <?php wp_nav_menu( array( 'menu_class' => 'nav navbar-nav hidden-sm-down', 'container' => '', 'menu_id' => 'main-nav-fixed', 'depth' => '2', 'theme_location' => 'primary', 'walker' => new wp_bootstrap_navwalker() ) ); ?>
+            <?php wp_nav_menu( array( 'menu_class' => 'nav navbar-nav hidden-sm-down', 'container' => '', 'menu_id' => 'main-nav-fixed', 'depth' => '2', 'theme_location' => 'new-primary', 'walker' => new wp_bootstrap_navwalker() ) ); ?>
             
         </nav>
 
@@ -126,6 +126,6 @@ $post_thumbnail_url = wp_get_attachment_url( $post_thumbnail_id ); echo $post_th
 
         <nav class="navbar navbar-light main-nav amatic hidden-sm-down" id="main-nav">
             <a class="navbar-brand" href="<?php echo home_url(); ?>">magazine</a>
-            <?php wp_nav_menu( array( 'menu_class' => 'nav navbar-nav hidden-md-down', 'container' => '', 'depth' => '2', 'theme_location' => 'primary', 'walker' => new wp_bootstrap_navwalker() ) ); ?>
+            <?php wp_nav_menu( array( 'menu_class' => 'nav navbar-nav hidden-md-down', 'container' => '', 'depth' => '2', 'theme_location' => 'new-primary', 'walker' => new wp_bootstrap_navwalker() ) ); ?>
         </nav>
         

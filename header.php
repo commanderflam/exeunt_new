@@ -76,7 +76,7 @@ $post_thumbnail_url = wp_get_attachment_url( $post_thumbnail_id ); echo $post_th
 
             <div id="logo">
 
-                <h1 class="dancing"><a href="<?php echo home_url(); ?>">Exeunt</a></h1>
+                <h1 class="dancing"><a href="<?php echo home_url(); ?>">exeunt</a></h1>
 
             </div>
 

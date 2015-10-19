@@ -160,7 +160,7 @@
                         <h6 class="text-danger"><a class="review" href="<?php echo get_post_type_archive_link('review'); ?>">Reviews</a></h6>
 
                         <h3><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h3>
-                        <p class="george"><span class="author"><?php echo get_the_author(); ?></span> on <?php echo get_the_excerpt();?></p>
+                        <p class="george"><span class="author"><?php echo massive_author($post->ID, $post->post_author, '', get_the_author(), $display_link = false); ?></span> on <?php echo get_the_excerpt();?></p>
                     
                         <p class="text-muted"><small><?php $pubDate = get_the_time('j F'); if ($today == $pubDate) { echo 'Published Today'; } elseif ($yesterday == $pubDate) { echo 'Published Yesterday'; } else echo $pubDate; ?></small></p>
                     
@@ -201,7 +201,7 @@
                         <h6><a class="features" href="<?php echo get_post_type_archive_link('features'); ?>">Features</a></h6>
 
                         <h3><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h3>
-                        <p class="george"><span class="author"><?php echo get_the_author(); ?></span> on <?php echo get_the_excerpt();?></p>
+                        <p class="george"><span class="author"><?php echo massive_author($post->ID, $post->post_author, '', get_the_author(), $display_link = false); ?></span> on <?php echo get_the_excerpt();?></p>
                     
                         <p class="text-muted"><small><?php $pubDate = get_the_time('j F'); if ($today == $pubDate) { echo 'Published Today'; } elseif ($yesterday == $pubDate) { echo 'Published Yesterday'; } else echo $pubDate; ?></small></p>
 
@@ -275,7 +275,7 @@
 
                         <h3><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h3>
                         
-                        <p class="george"><span class="author"><?php echo get_the_author(); ?></span> on <?php echo get_the_excerpt();?></p>
+                        <p class="george"><span class="author"><?php echo massive_author($post->ID, $post->post_author, '', get_the_author(), $display_link = false); ?></span> on <?php echo get_the_excerpt();?></p>
 
                         <p class="text-muted"><small><?php $pubDate = get_the_time('j F'); if ($today == $pubDate) { echo 'Published Today'; } elseif ($yesterday == $pubDate) { echo 'Published Yesterday'; } else echo $pubDate; ?></small></p>
                     
@@ -362,7 +362,7 @@
 
                                 <h3><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h3>
                                 
-                                <p class="george"><span class="author"><?php echo get_the_author(); ?></span> on <?php echo get_the_excerpt();?></p>
+                                <p class="george"><span class="author"><?php echo massive_author($post->ID, $post->post_author, '', get_the_author(), $display_link = false); ?></span> on <?php echo get_the_excerpt();?></p>
 
                                 <p class="text-muted"><small><?php $pubDate = get_the_time('j F'); if ($today == $pubDate) { echo 'Published Today'; } elseif ($yesterday == $pubDate) { echo 'Published Yesterday'; } else echo $pubDate; ?></small></p>
                             
@@ -412,7 +412,7 @@
 
                         <h3><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h3>
                         
-                        <p class="george"><span class="author"><?php echo get_the_author(); ?></span> on <?php echo get_the_excerpt();?></p>
+                        <p class="george"><span class="author"><?php echo massive_author($post->ID, $post->post_author, '', get_the_author(), $display_link = false); ?></span> on <?php echo get_the_excerpt();?></p>
 
                         <p class="text-muted"><small><?php $pubDate = get_the_time('j F'); if ($today == $pubDate) { echo 'Published Today'; } elseif ($yesterday == $pubDate) { echo 'Published Yesterday'; } else echo $pubDate; ?></small></p>
                     
@@ -447,11 +447,15 @@
         if($mpu1):
             foreach( $mpu1 as $post ) : setup_postdata($post);?>
                 <div class="some-damn-ad p5 text-right">
-                    <?php if ( has_post_thumbnail() ) {?>
-                        <!-- <p class="text-muted"><small>Advertisement</small></p> -->
+                    <?php if ( has_post_thumbnail() ) {
+                        $attr = array(
+                            'class' => 'img-responsive center-block'
+                        );
+                        ?>
+                        <p class="text-muted text-center ad-caption text-uppercase spaced">Advertisement</p>
                         <a target="_blank" title="Click for more info" href="<?php echo get_post_meta($post->ID, 'Ad Link', true);?>">
-                            <?php the_post_thumbnail('full');?>
-                        </a><?php }else {echo get_the_excerpt();}?>
+                            <?php the_post_thumbnail('full', $attr);?>
+                        </a><?php } ?>
                 </div>
             <?php endforeach; wp_reset_postdata();
 
@@ -496,7 +500,7 @@
                         
                     <!-- <h6 class="feature-date text-muted gil"><?php the_time('j F Y'); ?></h6> -->
                     
-                    <h5 class="author-title gil"><a href="<?php echo $authorlink; ?>" title="See all articles written by <?php echo $author; ?>"><?php echo $author; ?></a></h5>
+                    <h5 class="author-title gil"><?php echo massive_author($post->ID, $post->post_author, '', get_the_author(), $display_link = false); ?></h5>
 
                     <h3 class="gil archive-entry-title"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h3>
                     
@@ -608,7 +612,7 @@
 
                         <h3><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h3>
                         
-                        <p class="george"><span class="author"><?php echo get_the_author(); ?></span> on <?php echo get_the_excerpt();?></p>
+                        <p class="george"><span class="author"><?php echo massive_author($post->ID, $post->post_author, '', get_the_author(), $display_link = false); ?></span> on <?php echo get_the_excerpt();?></p>
 
                         <p class="text-muted"><small><?php $pubDate = get_the_time('j F'); if ($today == $pubDate) { echo 'Published Today'; } elseif ($yesterday == $pubDate) { echo 'Published Yesterday'; } else echo $pubDate; ?></small></p>
                     
@@ -624,7 +628,12 @@
     </div><!--row-->
 <hr>
 
-    <h1 class="gil center col-lg-offset-3">More Features</h1>
+    <div class="row">
+
+        <div class="col-lg-8 border-r">
+
+            <h1 class="gil center col-lg-offset-3">More Features</h1>
+
 
             <?php
 
@@ -642,23 +651,19 @@
             
                 foreach($features as $post): setup_postdata($post); $count++; 
 
-                $authorlink = get_author_posts_url( get_the_author_meta( 'ID' ));
-        
-                $author = get_the_author();
-
                 ?>
 
                 <div class="row list">
 
-                    <div class="col-lg-2 col-lg-offset-1 text-right">
+                    <div class="col-lg-3 text-right">
                         
                         <h6 class="feature-date text-muted gil"><?php $pubDate = get_the_time('j F'); if ($today == $pubDate) { echo 'Published Today'; } else echo $pubDate; ?></h6>
         
-                        <h5 class="author-title gil"><a href="<?php echo $authorlink; ?>" title="See all articles written by <?php echo $author; ?>"><?php echo $author; ?></a></h5>
+                        <h5 class="author-title gil"><?php echo massive_author($post->ID, $post->post_author, '', get_the_author(), $display_link = false); ?></h5>
 
                     </div>
 
-                    <div class="col-lg-2">
+                    <div class="col-lg-3">
                         <?php twentyfifteen_post_thumbnail('medium'); ?>
                     </div>
         
@@ -672,9 +677,40 @@
 
                 </div><!--row-->
 
+                <hr>
+
             <?php endforeach; wp_reset_postdata();
         
             endif; ?>
 
+        </div><!--col lg 8-->
+
+        <div class="col-lg-4">
+
+            <?php
+                if($mpu1):
+            
+                    foreach( $mpu1 as $post ) : setup_postdata($post);?>
+                
+                        <div class="some-damn-ad p5 text-right">
+                            <?php if ( has_post_thumbnail() ) {
+                                $attr = array(
+                                    'class' => 'img-responsive center-block'
+                                );
+                                ?>
+                                <p class="text-muted text-center ad-caption text-uppercase spaced">Advertisement</p>
+                                <a target="_blank" title="Click for more info" href="<?php echo get_post_meta($post->ID, 'Ad Link', true);?>">
+                                    <?php the_post_thumbnail('full', $attr);?>
+                                </a><?php } else { echo get_the_excerpt(); }?>
+                        </div>
+            
+                    <?php endforeach; wp_reset_postdata();
+
+                endif;
+            ?>
+
+        </div><!-- col lg 4 -->
+
+    </div><!--row-->
  
 <?php get_footer(); ?>

@@ -113,7 +113,7 @@
 
 		<?php } ?>
 
-		<h5 class="author-title gil"><?php echo massive_author($post->ID, $authorid, $authorlink, $author); ?></h5>
+		<h5 class="author-title gil"><?php echo massive_author($post->ID, $authorid, $authorlink, $author, true); ?></h5>
 		
 	</header><!-- .entry-header -->
 
@@ -149,6 +149,38 @@
 		?>
 	</div><!-- .entry-content -->
 
+	<?php $args = array(
+            'post_type' => 'adverts',
+            'adtype' => 'mpu',
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'adpos',
+                    'field' => 'slug',
+                    'terms' => 'mpu-1'
+                )
+            ), 
+            'meta_key' => 'Ad Status', 
+            'meta_value' => 'Active', 
+            'posts_per_page' => 1 );
+        $mpu1 = get_posts( $args );
+        if($mpu1):
+            foreach( $mpu1 as $post ) : setup_postdata($post);?>
+                <div id="body-ad" class="some-damn-ad p5 text-right pull-left">
+                    <?php if ( has_post_thumbnail() ) {
+                        $attr = array(
+                            'class' => 'img-responsive center-block'
+                        );
+                        ?>
+                        <p class="text-muted text-center ad-caption text-uppercase spaced">Advertisement</p>
+                        <a target="_blank" title="Click for more info" href="<?php echo get_post_meta($post->ID, 'Ad Link', true);?>">
+                            <?php the_post_thumbnail('full', $attr);?>
+                        </a><?php } ?>
+                </div>
+                <div class="clearfix"></div>
+            <?php endforeach; wp_reset_postdata();
+
+        endif; ?>
+
 		<?php 
 
 			$urltitle = urlencode( get_the_title() );
@@ -167,8 +199,25 @@
 		if ( is_single() && get_the_author_meta( 'description' ) ) :
 			get_template_part( 'author-bio' );
 		else :
-			echo '<hr><p><a class="btn btn-secondary author-link" href="'.esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ).'" rel="author"><span class="gil">'.$author.'</span></a> is a contributor to '.get_bloginfo('name').'.</p>';
-		endif;
+			//echo '<hr><p><a class="btn btn-secondary author-link" href="'.esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ).'" rel="author"><span class="gil">'.$author.'</span></a> is a contributor to '.get_bloginfo('name').'.</p>';
+
+		?>
+			<hr>
+
+			<div id="author-info" class="author-info">
+
+			<div class="author-description">
+				<p class="author-title"><span class="gil"><?php echo massive_author($post->ID, $authorid, $authorlink, $author, false); ?></span> is a contributor to Exeunt Magazine</p>
+
+				<p>
+					<a class="btn btn-secondary author-link" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
+						<?php printf( __( 'Read more articles by %s', 'twentyfifteen' ), get_the_author() ); ?>
+					</a>
+				</p>
+
+			</div><!-- .author-description -->
+		</div><!-- .author-info -->
+		<?php endif;
 	?>
 
 	<footer class="entry-footer">

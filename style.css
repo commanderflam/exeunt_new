@@ -76,6 +76,12 @@ header.page-header h1 {
 .dancing {
     font-family: 'Dancing Script', cursive;
 }
+.chango {
+    font-family: 'Chango', cursive;
+}
+.sigmar {
+    font-family: 'Sigmar One', cursive;
+}
 .invis {
     display: none;
 }
@@ -96,6 +102,15 @@ a.feature, a.features, .feature {
 }
 .big {
     font-size: 120%;
+}
+p.ad-caption {
+    margin-bottom: 0px !important;
+    font-size: 70%;
+    font-weight: 400;
+    font-family: Roboto, sans-serif !important;
+}
+#body-ad {
+    margin-right: 30px;
 }
 
 /* IV. Principal Navigation Styles */
@@ -123,7 +138,7 @@ a.feature, a.features, .feature {
 }
 #main-nav a.navbar-brand {
     font-size: 2rem;
-    letter-spacing: 1rem;
+    letter-spacing: .9rem;
     font-weight: 700;
     padding: 0;
     line-height: 2rem;
@@ -193,6 +208,9 @@ a.feature, a.features, .feature {
 }
 .tile h3 a, .feature-list a {
     color: #444;
+}
+.tile-img {
+    min-height: 300px;
 }
 
 /* VII. Logotype */
@@ -342,6 +360,7 @@ h5.author-title {
     background: #f9f9f9;
     padding: 3rem 0;
     border-top: 1px solid #f4f4f4;
+    margin-top: 2rem;
 }
 .tile p {
     font-style: italic;

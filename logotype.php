@@ -19,8 +19,16 @@ Template Name: Logotype
 		margin-left: -16px;
 		font-size: 9rem;
 	}
+	#logotype h1.fat {
+		font-size: 6rem;
+		margin-left: 0;
+	}
 	#logotype h2 {
 		font-size: 5.9rem;
+	}
+	#logotype h2.fat {
+		letter-spacing: .3em;
+		font-size: 3rem;
 	}
 	.logotype-inverse {
 		background-color: #444;
@@ -31,6 +39,15 @@ Template Name: Logotype
 	}
 	#logotype h3 {
 		font-size: 4rem;
+	}
+	.chango {
+		font-family: 'Chango', cursive;
+	}
+	.sigmar {
+		font-family: 'Sigmar One', cursive;
+	}
+	hr {
+		margin: 10rem 0;
 	}
 
 	</style>
@@ -50,6 +67,21 @@ Template Name: Logotype
 		<hr>
 
 		<h3 class="dancing">exeunt</h3>
+
+		<hr>
+
+		<h1 class="fat chango text-uppercase">Exeunt</h1>
+		<h2 class="fat chango text-uppercase">magazine</h2>
+
+		<hr>
+
+		<h1 class="fat sigmar text-uppercase">Exeunt</h1>
+
+		<hr>
+
+		<h1 class="fat chango">exeunt</h1>
+
+		<hr>
 
 	</div>
 
